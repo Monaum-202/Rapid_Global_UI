@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eBazar Sidebar</title>
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .sidebar {
+      height: 100vh;
+      width: 250px;
+      transition: all 0.3s;
+      background: #fff;
+      color: #000;
+      position: fixed;
+      padding: 1rem;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+    }
+
+    .sidebar.dark {
+      background: #d63838;
+      color: #fff;
+    }
+
+    .sidebar .profile {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .sidebar .profile img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+    .sidebar .profile strong {
+      display: block;
+    }
+    .sidebar .profile small {
+      font-size: 12px;
+      color: gray;
+    }
+
+    .sidebar input.form-control {
+      border-radius: 12px;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .sidebar .nav-link {
+      color: inherit;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 4px 0;
+      border-radius: 10px;
+      padding: 8px 12px;
+      transition: 0.2s;
+    }
+    .sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+  background: #ff6b6b;   /* your color */
+  color: #fff !important;
+}
+    .sidebar .nav-link i {
+      font-size: 16px;
+    }
+
+    .sidebar .collapse .nav-link {
+      padding-left: 30px;
+      font-size: 14px;
+    }
+
+    /* collapsed style */
+    .sidebar.collapsed {
+      width: 80px;
+    }
+    .sidebar.collapsed .profile strong,
+    .sidebar.collapsed .profile small,
+    .sidebar.collapsed .nav-link span,
+    .sidebar.collapsed input {
+      display: none;
+    }
+
+
+
+    .toggle-btn {
+      position: absolute;
+      top: 10px;
+      right: -25px;
+      background: #ff6b6b;
+      color: #fff;
+      border-radius: 50%;
+      border: none;
+      width: 30px;
+      height: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<div class=" text-white sidebar" style="background-color: rgb(0, 0, 7);" id="sidebar">
+
+<h2 class=" text-white text-center mb-4"> Rapid Global </h2>
+  <!-- Accordion Menu -->
+  <div id="sidebarAccordion" class=" text-white nav nav-pills flex-column mb-auto">
+
+    <a href="#" class="nav-link active"><i class="fa fa-house"></i> <span>Dashboard</span></a>
+
+    <a class=" text-white nav-link d-flex justify-content-between align-items-center text-white" data-bs-toggle="collapse" href="#productsMenu" aria-expanded="false">
+      <span><i class=" text-white fa fa-truck"></i> <span>Products</span></span>
+      <i class=" text-white fa fa-chevron-down"></i>
+    </a>
+    <div class=" text-white collapse" id="productsMenu" data-bs-parent="#sidebarAccordion">
+      <ul class=" text-white nav flex-column">
+        <li><a href="#" class=" text-white nav-link">All Products</a></li>
+        <li><a href="#" class=" text-white nav-link">Add Product</a></li>
+      </ul>
+    </div>
+
+    <a class=" text-white nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#ordersMenu" aria-expanded="false">
+      <span><i class=" text-white fa fa-file"></i> <span>Orders</span></span>
+      <i class=" text-white fa fa-chevron-down"></i>
+    </a>
+    <div class=" text-white collapse" id="ordersMenu" data-bs-parent="#sidebarAccordion">
+      <ul class=" text-white nav flex-column">
+        <li><a href="#" class=" text-white nav-link">All Orders</a></li>
+        <li><a href="#" class=" text-white nav-link">Pending Orders</a></li>
+        <li><a href="#" class=" text-white nav-link">Complete Orders</a></li>
+      </ul>
+    </div>
+
+    <a class=" text-white nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#customersMenu" aria-expanded="false">
+      <span><i class=" text-white fa fa-user"></i> <span>Customers</span></span>
+    </a>
+
+    <a class=" text-white nav-link d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#inventoryMenu" aria-expanded="false">
+      <span><i class=" text-white fa fa-chart-line"></i> <span>Inventory</span></span>
+      <i class=" text-white fa fa-chevron-down"></i>
+    </a>
+    <div class=" text-white collapse" id="inventoryMenu" data-bs-parent="#sidebarAccordion">
+      <ul class=" text-white nav flex-column">
+        <li><a href="#" class=" text-white nav-link">Stock List</a></li>
+        <li><a href="#" class=" text-white nav-link">Purchase</a></li>
+        <li><a href="#" class=" text-white nav-link">Supplier</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+  <a href="#" class=" text-white nav-link"><i class=" text-white fa fa-cog"></i> <span>Settings</span></a>
+  <a href="#" class=" text-white nav-link"><i class=" text-white fa fa-circle-info"></i> <span>Support</span></a>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Select all nav-links inside sidebar
+  document.querySelectorAll('#sidebarAccordion .nav-link').forEach(link => {
+    link.addEventListener('click', function () {
+      // remove active from all links
+      document.querySelectorAll('#sidebarAccordion .nav-link').forEach(l => l.classList.remove('active'));
+      // add active to clicked one
+      this.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
